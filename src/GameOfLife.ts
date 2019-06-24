@@ -7,11 +7,18 @@ class GameOfLife {
   }
 
   nextGeneration() {
-    if (this.liveCells.length < 3) {
-      this.liveCells = [];
-    } else {
-      this.liveCells = [new Position(0, 1)];
-    }
+    this.liveCells = this.liveCells.reduce((newGeneration, cell) => {
+      if (this.getLiveNeighbors(cell) < 2) return newGeneration;
+
+      newGeneration.push(cell);
+      return newGeneration;
+    }, []);
+  }
+
+  private getLiveNeighbors(cell: Position): number {
+    let liveNeighbors;
+
+    return 0;
   }
 
   currentGeneration(): Array<Array<number>> {
