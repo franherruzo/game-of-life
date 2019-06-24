@@ -1,5 +1,6 @@
 import should from 'should';
 import GameOfLife from '../src/GameOfLife';
+import Position from '../src/Position';
 
 describe('Game Of Life', () => {
   it('all cells are dead all continues dead in the next generation', () => {
