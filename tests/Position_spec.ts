@@ -55,4 +55,13 @@ describe('Position', () => {
 
     should(position.isNeighbor(new Position(0, 0))).eql(false);
   });
+
+  it('returns 8 neighbors', () => {
+    const position = new Position(5, 5);
+    const neighbors = position.getNeighbors();
+    should(neighbors.length).be.eql(8);
+    neighbors.forEach(neighbor => {
+      should(neighbor.isNeighbor(position)).be.ok();
+    });
+  });
 });

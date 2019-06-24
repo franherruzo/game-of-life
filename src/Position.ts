@@ -28,6 +28,15 @@ class Position {
       );
     });
   }
+
+  getNeighbors(): Array<Position> {
+    return NEIGHBOR_POSITIONS.map(relativePosition => {
+      return new Position(
+        this.row + relativePosition[0],
+        this.column + relativePosition[1]
+      );
+    });
+  }
 }
 
 export default Position;
