@@ -13,6 +13,20 @@ class Position {
   isNeighbor(position: Position): boolean {
     if (position.column === this.column && position.row === this.row - 1)
       return true;
+    if (position.column === this.column + 1 && position.row === this.row - 1)
+      return true;
+    if (position.column === this.column + 1 && position.row === this.row)
+      return true;
+    if (position.column === this.column + 1 && position.row === this.row + 1)
+      return true;
+    if (position.column === this.column && position.row === this.row + 1)
+      return true;
+    if (position.column === this.column - 1 && position.row === this.row + 1)
+      return true;
+    if (position.column === this.column - 1 && position.row === this.row)
+      return true;
+    if (position.column === this.column - 1 && position.row === this.row - 1)
+      return true;
     return false;
   }
 }
