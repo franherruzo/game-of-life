@@ -9,6 +9,12 @@ class Position {
   toArray(): Array<number> {
     return [this.row, this.column];
   }
+
+  isNeighbor(position: Position): boolean {
+    if (position.column === this.column && position.row === this.row - 1)
+      return true;
+    return false;
+  }
 }
 
 export default Position;
