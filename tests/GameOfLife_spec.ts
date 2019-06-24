@@ -31,7 +31,7 @@ describe('Game Of Life', () => {
 
     game.nextGeneration();
 
-    should(game.currentGeneration()).eql([[0, 1]]);
+    should(game.currentGeneration()).eql([[0, 1], [-1, 1], [1, 1]]);
   });
 
   it(' any live cell with two of three live neighbor lives', () => {
@@ -47,6 +47,20 @@ describe('Game Of Life', () => {
 
     game.nextGeneration();
 
-    should(game.currentGeneration()).eql([[0, 0], [0, 2], [1, 0]]);
+    should(game.currentGeneration()).eql([
+      [0, 0],
+      [0, 2],
+      [1, 0],
+      [-1, 1],
+      [1, 2]
+    ]);
+  });
+
+  it('any dead cell with exactly three live neighbor becomes alive', () => {
+    const game = new GameOfLife([[0, 1], [1, 0], [1, 1]]);
+
+    game.nextGeneration();
+
+    should(game.currentGeneration()).eql([[0, 1], [1, 0], [1, 1], [0, 0]]);
   });
 });

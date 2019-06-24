@@ -16,7 +16,11 @@ class GameOfLife {
       if (cell.isAlive() && (liveNeighbors < 2 || liveNeighbors > 3))
         return newGeneration;
 
-      newGeneration.push(cell);
+      if (liveNeighbors === 2 || liveNeighbors === 3) newGeneration.push(cell);
+
+      if (!cell.isAlive() && liveNeighbors === 3)
+        newGeneration.push(new Cell('live', cell.position()));
+
       return newGeneration;
     }, []);
   }
@@ -25,7 +29,7 @@ class GameOfLife {
     return this.cells.reduce((expandedCells, cell) => {
       const neighbors = cell.position().getNeighbors();
       const newDeadCells = neighbors.reduce((deadCells, neighbor) => {
-        if (this.isALiveCell(neighbor))
+        if (!this.existsCell(expandedCells, neighbor))
           deadCells.push(new Cell('dead', neighbor));
         return deadCells;
       }, []);
@@ -33,8 +37,8 @@ class GameOfLife {
     }, this.cells);
   }
 
-  private isALiveCell(position: Position): boolean {
-    return this.cells.some(cell => {
+  private existsCell(cells: Array<Cell>, position: Position): boolean {
+    return cells.some(cell => {
       return cell.position().isEqual(position);
     });
   }
