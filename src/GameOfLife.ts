@@ -12,10 +12,10 @@ class GameOfLife {
   nextGeneration() {
     const cells = this.expandDeadCellsFromLiveCells();
     this.cells = cells.reduce((newGeneration, cell) => {
-      if (cell.isAlive()) {
-        if (this.getLiveNeighbors(cell.position()) < 2) return newGeneration;
-        if (this.getLiveNeighbors(cell.position()) > 3) return newGeneration;
-      }
+      const liveNeighbors = this.getLiveNeighbors(cell.position());
+      if (cell.isAlive() && (liveNeighbors < 2 || liveNeighbors > 3))
+        return newGeneration;
+
       newGeneration.push(cell);
       return newGeneration;
     }, []);
