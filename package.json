@@ -1,0 +1,19 @@
+{
+  "name": "game-of-life-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/**/*_spec.ts --require ts-node/register --require source-map-support/register",
+    "test-watch": "mocha tests/**/*_spec.ts --require ts-node/register --watch-extensions ts,tsx --require source-map-support/register --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.1.4",
+    "should": "^13.2.3",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}
