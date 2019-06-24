@@ -1,6 +1,5 @@
 import should from 'should';
 import GameOfLife from '../src/GameOfLife';
-import Position from '../src/Position';
 
 describe('Game Of Life', () => {
   it('all cells are dead all continues dead in the next generation', () => {
@@ -27,7 +26,7 @@ describe('Game Of Life', () => {
     should(game.currentGeneration()).eql([]);
   });
 
-  it('returns one live cell given 3 consecutive live cells', () => {
+  it('any live cell with fewer than two live neighbor dies', () => {
     const game = new GameOfLife([[0, 0], [0, 1], [0, 2]]);
 
     game.nextGeneration();

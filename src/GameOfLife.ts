@@ -16,9 +16,10 @@ class GameOfLife {
   }
 
   private getLiveNeighbors(cell: Position): number {
-    let liveNeighbors;
-
-    return 0;
+    return this.liveCells.reduce((liveNeighbors, liveCell) => {
+      if (liveCell.isNeighbor(cell)) liveNeighbors++;
+      return liveNeighbors;
+    }, 0);
   }
 
   currentGeneration(): Array<Array<number>> {
