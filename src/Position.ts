@@ -37,6 +37,10 @@ class Position {
       );
     });
   }
+
+  isEqual(position: Position): boolean {
+    return this.row === position.row && this.column === position.column;
+  }
 }
 
 export default Position;

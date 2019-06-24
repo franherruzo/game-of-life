@@ -22,7 +22,21 @@ class GameOfLife {
   }
 
   private expandDeadCellsFromLiveCells(): Array<Cell> {
-    return this.cells;
+    return this.cells.reduce((expandedCells, cell) => {
+      const neighbors = cell.position().getNeighbors();
+      const newDeadCells = neighbors.reduce((deadCells, neighbor) => {
+        if (this.isALiveCell(neighbor))
+          deadCells.push(new Cell('dead', neighbor));
+        return deadCells;
+      }, []);
+      return [...expandedCells, ...newDeadCells];
+    }, this.cells);
+  }
+
+  private isALiveCell(position: Position): boolean {
+    return this.cells.some(cell => {
+      return cell.position().isEqual(position);
+    });
   }
   private getLiveNeighbors(position: Position): number {
     return this.cells.reduce((liveNeighbors, liveCell) => {
@@ -32,7 +46,10 @@ class GameOfLife {
   }
 
   currentGeneration(): Array<Array<number>> {
-    return this.cells.map(cell => cell.position().toArray());
+    return this.cells.reduce((liveCells, cell) => {
+      if (cell.isAlive()) liveCells.push(cell.position().toArray());
+      return liveCells;
+    }, []);
   }
 }
 
