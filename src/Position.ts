@@ -1,3 +1,13 @@
+const NEIGHBOR_POSITIONS = [
+  [-1, 0],
+  [-1, 1],
+  [0, 1],
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, -1],
+  [-1, -1]
+];
 class Position {
   private row: number;
   private column: number;
@@ -11,23 +21,12 @@ class Position {
   }
 
   isNeighbor(position: Position): boolean {
-    if (position.column === this.column && position.row === this.row - 1)
-      return true;
-    if (position.column === this.column + 1 && position.row === this.row - 1)
-      return true;
-    if (position.column === this.column + 1 && position.row === this.row)
-      return true;
-    if (position.column === this.column + 1 && position.row === this.row + 1)
-      return true;
-    if (position.column === this.column && position.row === this.row + 1)
-      return true;
-    if (position.column === this.column - 1 && position.row === this.row + 1)
-      return true;
-    if (position.column === this.column - 1 && position.row === this.row)
-      return true;
-    if (position.column === this.column - 1 && position.row === this.row - 1)
-      return true;
-    return false;
+    return NEIGHBOR_POSITIONS.some(relativePosition => {
+      return (
+        position.row === this.row + relativePosition[0] &&
+        position.column === this.column + relativePosition[1]
+      );
+    });
   }
 }
 
