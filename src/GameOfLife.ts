@@ -9,7 +9,7 @@ class GameOfLife {
   nextGeneration() {
     this.liveCells = this.liveCells.reduce((newGeneration, cell) => {
       if (this.getLiveNeighbors(cell) < 2) return newGeneration;
-
+      if (this.getLiveNeighbors(cell) > 3) return newGeneration;
       newGeneration.push(cell);
       return newGeneration;
     }, []);
